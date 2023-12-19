@@ -1,4 +1,37 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import { createNaverMap } from 'vue3-naver-maps';
+import { VueQueryPlugin } from 'vue-query';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
-createApp(App).mount('#app')
+import App from './App.vue';
+import './index.css';
+
+const app = createApp(App);
+
+app.use(createPinia().use(piniaPluginPersistedstate));
+
+const vueQueryPluginOptions = {
+  queryClientConfig: {
+    defaultOptions: {
+      queries: {
+        retry: 0,
+        staleTime: 10 * 1000,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+      },
+      mutations: {
+        retry: 0,
+      },
+    },
+  },
+};
+
+app.use(VueQueryPlugin, vueQueryPluginOptions);
+app.use(createNaverMap, {
+  clientId: import.meta.env.VITE_NCLOUD_CLIENT_ID, // Required
+  category: 'ncp', // Optional
+  subModules: ['geocoder'], // Optional, "panorama" | "geocoder" | "drawing" | "visualization"
+});
+
+app.mount('#app');

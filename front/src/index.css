@@ -76,13 +76,6 @@ input {
   background-color: #f8fafc;
 }
 
-.markerImg {
-  width: 4.5rem;
-  height: 4.5rem;
-  background: url('/file.png') center;
-  background-size: 4.5rem;
-}
-
 .line {
   display: flex;
   flex-basis: 100%;
