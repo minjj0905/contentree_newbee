@@ -1,4 +1,5 @@
 <script setup>
+  import { RouterView } from 'vue-router';
   import { FwbButton } from 'flowbite-vue';
   import { NaverMap } from 'vue3-naver-maps';
 
@@ -20,6 +21,7 @@
 </script>
 
 <template>
+  <router-view />
   <fwb-button color="default">Default</fwb-button>
   <fwb-button color="alternative">Alternative</fwb-button>
   <fwb-button color="dark">Dark</fwb-button>
@@ -31,10 +33,10 @@
   <fwb-button color="pink">Pink</fwb-button>
 
   test success
-  <naver-map
+  <!-- <naver-map
     style="width: 100%; height: 100vh; position: absolute; top: 0%; left: 0%"
     :mapOptions="mapOptions"
     :initLayers="initLayers"
   >
-  </naver-map>
+  </naver-map> -->
 </template>
