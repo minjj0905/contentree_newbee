@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -31,6 +32,19 @@ public class PopupController {
             resultMap.put("msg", "get popup stores");
             return ResponseEntity.status(HttpStatus.OK).body(resultMap);
 
+        } catch (Exception e) {
+            resultMap.put("msg", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultMap);
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchPopupStores(@RequestParam(value = "keyword") String keyword) {
+        Map<String, Object> resultMap = new HashMap<>();
+        try {
+            resultMap.put("object", popupService.searchPopupStores(keyword));
+            resultMap.put("msg", "search popup stores");
+            return ResponseEntity.status(HttpStatus.OK).body(resultMap);
         } catch (Exception e) {
             resultMap.put("msg", e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultMap);

@@ -6,5 +6,16 @@
     <select id="getPopupStores" resultType="popupStoreDto">
         SELECT *
         FROM popupstore
+        order by name
+    </select>
+    <select id="searchPopupStores" parameterType="String" resultType="popupStoreDto">
+        SELECT *
+        FROM popupstore
+        WHERE name like "%"#{keyword}"%"
+           or category like "%"#{keyword}"%"
+           or address like "%"#{keyword}"%"
+           or locale like "%"#{keyword}"%"
+           or description like "%"#{keyword}"%"
+        order by name
     </select>
 </mapper>

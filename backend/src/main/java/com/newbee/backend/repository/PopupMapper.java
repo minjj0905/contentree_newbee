@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface PopupMapper {
     List<PopupStoreDto> getPopupStores();
+
+    List<PopupStoreDto> searchPopupStores(String keyword);
 }

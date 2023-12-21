@@ -21,10 +21,17 @@
 
 <template>
   <router-view />
-  <!-- <naver-map
-    style="width: 100%; height: 100vh; position: absolute; top: 0%; left: 0%"
+  <naver-map
+    style="
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      z-index: -1;
+    "
     :mapOptions="mapOptions"
     :initLayers="initLayers"
   >
-  </naver-map> -->
+  </naver-map>
 </template>

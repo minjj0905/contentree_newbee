@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import SearchVue from '@/components/Sidebar/Search.vue';
+import SidebarLayoutVue from '@/components/Sidebar/SidebarLayout.vue';
+import SearchVue from '../components/Content/Search.vue';
+import PopupVue from '../components/Content/Popup.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +9,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: SearchVue,
+      component: SidebarLayoutVue,
+      children: [
+        {
+          path: '/search',
+          component: SearchVue,
+        },
+        {
+          path: '/popup/:id',
+          component: PopupVue,
+        },
+      ],
     },
   ],
 });

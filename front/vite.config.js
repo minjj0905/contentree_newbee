@@ -11,4 +11,12 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      '/v1': {
+        target: 'https://openapi.naver.com',
+        changeOrigin: true,
+      },
+    },
+  },
 });
