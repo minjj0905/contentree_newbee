@@ -1,9 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" },
-    {
-      "source": "/v1/:path*",
-      "destination": "https://openapi.naver.com/v1/:path*"
-    }
-  ]
-}
