@@ -15,6 +15,7 @@ const instance = createInstance();
 
 const naverSearchAPI = {
   blog: (query) => instance.get(`/v1/search/blog.json?query=${query}`),
+  image: (query) => instance.get(`/v1/search/image?query=${query}`),
 };
 
 export default naverSearchAPI;
