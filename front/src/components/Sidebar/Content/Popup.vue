@@ -69,20 +69,44 @@
 
 <script setup>
   import dayjs from 'dayjs';
+  import { onMounted, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import { FwbBadge, FwbCard } from 'flowbite-vue';
   import { Carousel, Slide, Navigation } from 'vue3-carousel';
   import useNaverImg from '@/queries/useNaverImg';
   import useNaverBlog from '@/queries/useNaverBlog';
-
+  import { useMapStore } from '@/stores/map';
   import usePopup from '@/queries/usePopup';
   import Nav from '@/components/Sidebar/Nav.vue';
 
   const route = useRoute();
   const router = useRouter();
+  const { morph } = useMapStore();
+
   const { data: store } = usePopup(route?.params.name);
   const { data: blogData } = useNaverBlog(route?.params.name);
   const { data: imgData } = useNaverImg(route?.params.name);
+
+  onMounted(() => {
+    morph(
+      new window.naver.maps.LatLng(
+        store.lat || history?.state?.lat,
+        store.lng || history?.state?.lng
+      )
+    );
+  });
+
+  watch(
+    () => [store],
+    () => {
+      morph(
+        new window.naver.maps.LatLng(
+          store.lat || history?.state?.lat,
+          store.lng || history?.state?.lng
+        )
+      );
+    }
+  );
 
   const handleBlogClick = (link) => {
     window.open(link, '_blank');

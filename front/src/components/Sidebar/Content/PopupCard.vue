@@ -52,9 +52,11 @@
       params: {
         name: props.store.name,
       },
-      // state: {
-      //   store: { ...props.store },
-      // },
+      state: {
+        needMorph: true,
+        lat: props.store.lat,
+        lng: props.store.lng,
+      },
     });
   };
 </script>

@@ -76,6 +76,19 @@ input {
   background-color: #f8fafc;
 }
 
+.navermarker {
+  min-width: 6rem;
+  word-break: keep-all;
+  text-align: center;
+}
+
+.markercontainer:hover div {
+  color: white;
+  background-color: #9333ea;
+  border: none;
+  z-index: 999;
+}
+
 .line {
   display: flex;
   flex-basis: 100%;
