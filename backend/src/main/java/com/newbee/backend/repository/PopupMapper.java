@@ -10,4 +10,6 @@ public interface PopupMapper {
     List<PopupStoreDto> getPopupStores();
 
     List<PopupStoreDto> searchPopupStores(String keyword);
+
+    PopupStoreDto getPopupStore(String name);
 }

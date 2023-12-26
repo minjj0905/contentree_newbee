@@ -1,8 +1,9 @@
 <template>
+  <Nav :goBack="goBack">{{ store?.name }}</Nav>
   <carousel :items-to-show="1" :autoplay="3000" :wrapAround="true">
     <slide v-for="image in imgData?.items" :key="image?.title">
       <img
-        class="w-full h-[10rem] bg-gray-400 object-cover"
+        class="w-full h-[12rem] bg-gray-400 object-cover"
         :src="image?.link"
       />
     </slide>
@@ -12,7 +13,7 @@
     </template>
   </carousel>
 
-  <div class="flex flex-col gap-1 mt-4">
+  <div class="flex flex-col gap-1 mt-2s p-4">
     <h2
       class="font-bold text-purple-600 text-xl flex justify-between gap-2 items-start"
     >
@@ -68,16 +69,20 @@
 
 <script setup>
   import dayjs from 'dayjs';
-
+  import { useRoute, useRouter } from 'vue-router';
   import { FwbBadge, FwbCard } from 'flowbite-vue';
   import { Carousel, Slide, Navigation } from 'vue3-carousel';
   import useNaverImg from '@/queries/useNaverImg';
   import useNaverBlog from '@/queries/useNaverBlog';
 
-  const { store } = history.state;
+  import usePopup from '@/queries/usePopup';
+  import Nav from '@/components/Sidebar/Nav.vue';
 
-  const { data: blogData } = useNaverBlog(store?.name);
-  const { data: imgData } = useNaverImg(store?.name);
+  const route = useRoute();
+  const router = useRouter();
+  const { data: store } = usePopup(route?.params.name);
+  const { data: blogData } = useNaverBlog(route?.params.name);
+  const { data: imgData } = useNaverImg(route?.params.name);
 
   const handleBlogClick = (link) => {
     window.open(link, '_blank');
@@ -96,6 +101,10 @@
     }
 
     return str;
+  };
+
+  const goBack = () => {
+    router.go(-1);
   };
 </script>
 

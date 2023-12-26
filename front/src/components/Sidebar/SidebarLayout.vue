@@ -13,7 +13,7 @@
     class="absolute w-[26rem] h-[90vh] top-10 left-4 pt-3 bg-white !rounded-md flex flex-col justify-betwee"
   >
     <SearchBar />
-    <main class="w-full grow overflow-y-auto p-4">
+    <main class="w-full grow overflow-y-auto">
       <router-view :key="route.path" />
     </main>
     <Footer />

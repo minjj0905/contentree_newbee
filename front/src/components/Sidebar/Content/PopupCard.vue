@@ -34,6 +34,7 @@
 
 <script setup>
   import dayjs from 'dayjs';
+  import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { FwbCard, FwbBadge } from 'flowbite-vue';
 
@@ -42,17 +43,18 @@
   const props = defineProps(['store']);
   const router = useRouter();
 
-  const { data: imgData } = useNaverImg(props?.store?.name);
+  const name = ref(props?.store?.name);
+  const { data: imgData } = useNaverImg(name.value);
 
   const handleClick = () => {
     router.push({
       name: 'popup',
       params: {
-        id: props.store.id,
+        name: props.store.name,
       },
-      state: {
-        store: { ...props.store },
-      },
+      // state: {
+      //   store: { ...props.store },
+      // },
     });
   };
 </script>

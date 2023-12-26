@@ -18,7 +18,7 @@ const router = createRouter({
         },
         {
           name: 'popup',
-          path: '/popup/:id',
+          path: '/popup/:name',
           component: PopupVue,
         },
       ],

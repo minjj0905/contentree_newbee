@@ -26,4 +26,9 @@ public class PopupServiceImpl implements PopupService {
     public List<PopupStoreDto> searchPopupStores(String keyword) {
         return popupMapper.searchPopupStores(keyword);
     }
+
+    @Override
+    public PopupStoreDto getPopupStore(String name) {
+        return popupMapper.getPopupStore(name);
+    }
 }

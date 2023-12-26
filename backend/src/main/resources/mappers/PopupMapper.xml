@@ -18,4 +18,9 @@
            or description like "%"#{keyword}"%"
         order by name
     </select>
+    <select id="getPopupStore" parameterType="String" resultType="popupStoreDto">
+        SELECT *
+        FROM popupstore
+        WHERE name = #{name}
+    </select>
 </mapper>
