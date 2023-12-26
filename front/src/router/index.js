@@ -5,6 +5,7 @@ import PopupVue from '@/components/Sidebar/Content/Popup.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+
   routes: [
     {
       path: '/',
@@ -16,12 +17,16 @@ const router = createRouter({
           component: SearchVue,
         },
         {
+          name: 'popup',
           path: '/popup/:id',
           component: PopupVue,
         },
       ],
     },
   ],
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
 export default router;

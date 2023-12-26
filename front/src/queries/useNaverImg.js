@@ -7,6 +7,8 @@ const useNaverImg = (keyword, options = {}) => {
     () => naverSearchAPI.image(keyword),
     {
       ...options,
+      staleTime: 1000 * 1000,
+      cacheTime: 10000 * 1000,
       select: (data) => data.data,
     }
   );

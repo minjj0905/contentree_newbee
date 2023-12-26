@@ -1,5 +1,5 @@
 <template>
-  <fwb-card class="cursor-pointer p-3">
+  <fwb-card @click="handleClick" class="cursor-pointer p-3">
     <div class="flex justify-between gap-2 text-sm">
       <div class="flex w-[16rem] min-h-[6rem] flex-col">
         <h2
@@ -25,7 +25,7 @@
       </div>
       <img
         class="w-[6.5rem] min-h-[5.5rem] max-h-[6.5rem] object-cover rounded-md bg-gray-100"
-        :src="imgData?.items[0].link"
+        :src="imgData?.items[0].thumbnail"
         onerror="this.src = 'noimg.png'"
       />
     </div>
@@ -34,15 +34,27 @@
 
 <script setup>
   import dayjs from 'dayjs';
+  import { useRouter } from 'vue-router';
   import { FwbCard, FwbBadge } from 'flowbite-vue';
 
-  // import useNaverBlog from '@/queries/useNaverBlog';
   import useNaverImg from '@/queries/useNaverImg';
 
   const props = defineProps(['store']);
+  const router = useRouter();
 
-  // const { data: blogData } = useNaverBlog(props?.store?.name);
   const { data: imgData } = useNaverImg(props?.store?.name);
+
+  const handleClick = () => {
+    router.push({
+      name: 'popup',
+      params: {
+        id: props.store.id,
+      },
+      state: {
+        store: { ...props.store },
+      },
+    });
+  };
 </script>
 
 <style scoped></style>
