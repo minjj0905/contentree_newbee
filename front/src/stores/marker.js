@@ -10,7 +10,7 @@ export const useMarkerStore = defineStore('marker', () => {
   const { data: popupList } = usePopupList();
 
   const initMarkers = () => {
-    popupList.value.forEach((store) => {
+    popupList?.value?.forEach((store) => {
       const marker = new window.naver.maps.Marker({
         position: new window.naver.maps.LatLng(store?.lat, store?.lng),
         map: getMap(),
