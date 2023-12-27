@@ -1,5 +1,4 @@
 <script setup>
-  import { onBeforeMount } from 'vue';
   import { RouterView } from 'vue-router';
   import { NaverMap } from 'vue3-naver-maps';
   import { useMapStore } from './stores/map';
@@ -9,21 +8,21 @@
   const { initMarkers } = useMarkerStore();
 
   const mapOptions = {
-    latitude: 37.51347, // 지도 중앙 위도
-    longitude: 127.041722, // 지도 중앙 경도
-    zoom: 15,
+    latitude: 37.54347, // 지도 중앙 위도
+    longitude: 127.038722, // 지도 중앙 경도
+    zoom: 13,
     minZoom: 13,
     tileTransition: true,
     // zoomControl: true,
     // zoomControlOptions: { position: 'TOP_RIGHT' },
   };
 
-  onBeforeMount(() => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      if (pos.coords.latitude) mapOptions.latitude = pos.coords.latitude;
-      if (pos.coords.longitude) mapOptions.longitude = pos.coords.longitude;
-    });
-  });
+  // onBeforeMount(() => {
+  //   navigator.geolocation.getCurrentPosition((pos) => {
+  //     if (pos.coords.latitude) mapOptions.latitude = pos.coords.latitude;
+  //     if (pos.coords.longitude) mapOptions.longitude = pos.coords.longitude;
+  //   });
+  // });
 
   const initLayers = [
     'BACKGROUND',
