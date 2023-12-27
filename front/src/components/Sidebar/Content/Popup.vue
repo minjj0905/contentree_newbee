@@ -1,7 +1,12 @@
 <template>
   <template v-if="storeSC && blogSC && imgSC">
     <Nav :goBack="goBack">{{ store?.name }}</Nav>
-    <carousel :items-to-show="1" :autoplay="3000" :wrapAround="true">
+    <carousel
+      v-show="imgData?.items.length"
+      :items-to-show="1"
+      :autoplay="3000"
+      :wrapAround="true"
+    >
       <slide v-for="image in imgData?.items" :key="image?.title">
         <img
           class="w-full h-[12rem] bg-gray-400 object-cover"
@@ -17,9 +22,11 @@
 
     <div class="flex flex-col gap-1 mt-1 p-4">
       <h2
-        class="font-bold text-purple-600 text-xl flex justify-between gap-2 items-start"
+        class="font-bold max-w-[21.5rem] text-purple-600 text-xl flex justify-between gap-2 items-start"
       >
-        {{ store?.name }}
+        <span class="w-full">
+          {{ store?.name }}
+        </span>
         <div class="flex m-0 mt-1">
           <fwb-badge class="flex-shrink-0">
             {{ store?.locale }}

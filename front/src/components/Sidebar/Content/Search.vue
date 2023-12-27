@@ -1,6 +1,6 @@
 <template>
   <Nav :goBack="goBack">{{ keyword }}</Nav>
-  <div class="p-4" v-show="isSuccess">
+  <div class="p-4" v-if="isSuccess">
     <Title v-if="searchPopupList?.length">
       {{ searchPopupList?.length }}개의 검색 결과가 있습니다.
     </Title>
@@ -13,11 +13,15 @@
       />
     </div>
   </div>
+  <div v-else class="w-full h-full flex justify-center items-center">
+    <fwb-spinner size="12" color="purple" />
+  </div>
 </template>
 
 <script setup>
   import { ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
+  import { FwbSpinner } from 'flowbite-vue';
   import { useSearchStore } from '@/stores/search';
   import usePopupSearch from '@/queries/usePopupSearch';
   import PopupCard from './PopupCard.vue';
@@ -33,7 +37,7 @@
   const {
     data: searchPopupList,
     refetch: refetchPopupList,
-    isSuccess,
+    isSuccess: isSuccess,
   } = usePopupSearch(keyword);
 
   watch(

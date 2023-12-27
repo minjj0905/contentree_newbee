@@ -14,6 +14,8 @@
     zoom: 15,
     minZoom: 13,
     tileTransition: true,
+    // zoomControl: true,
+    // zoomControlOptions: { position: 'TOP_RIGHT' },
   };
 
   onBeforeMount(() => {
@@ -33,6 +35,11 @@
 
   const onLoadMap = (mapObject) => {
     setMap(mapObject);
+    mapObject.setOptions('zoomControl', true);
+    mapObject.setOptions('zoomControlOptions', {
+      style: window.naver.maps.ZoomControlStyle.SMALL,
+      position: window.naver.maps.Position.TOP_RIGHT,
+    });
     initMarkers();
   };
 </script>

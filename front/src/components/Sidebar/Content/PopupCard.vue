@@ -1,9 +1,9 @@
 <template>
-  <fwb-card @click="handleClick" class="cursor-pointer p-3">
+  <fwb-card v-show="isSuccess" @click="handleClick" class="cursor-pointer p-3">
     <div class="flex justify-between gap-2 text-sm">
-      <div class="flex w-[16rem] h-[7rem] flex-col">
+      <div class="flex w-[15rem] h-[7rem] flex-col">
         <h2
-          class="font-bold text-purple-600 text-lg flex justify-between gap-2 items-start"
+          class="font-bold text-purple-600 text-base flex justify-between gap-2 items-start"
         >
           {{ store?.name }}
           <fwb-badge class="m-0 mt-1 flex-shrink-0" type="purple">{{
@@ -19,14 +19,14 @@
             {{ dayjs(store?.endDate).format('M.D') }}
           </span>
         </div>
-        <p class="text-gray-500">
+        <p class="text-gray-500 text-ellipsis line-clamp-2">
           {{ store?.description }}
         </p>
       </div>
       <img
         class="w-[6.5rem] min-h-[5.5rem] max-h-[6.5rem] object-cover rounded-md bg-gray-100"
-        :src="imgData?.items[0].thumbnail"
-        onerror="this.src = 'noimg.png'"
+        :src="imgData?.items[0]?.thumbnail"
+        @error="handleImgError"
       />
     </div>
   </fwb-card>
@@ -44,7 +44,7 @@
   const router = useRouter();
 
   const name = ref(props?.store?.name);
-  const { data: imgData } = useNaverImg(name.value);
+  const { data: imgData, isSuccess } = useNaverImg(name.value);
 
   const handleClick = () => {
     router.push({
@@ -58,6 +58,10 @@
         lng: props.store.lng,
       },
     });
+  };
+
+  const handleImgError = (e) => {
+    e.target.src = '/contentree_newbee/noimg.png';
   };
 </script>
 
