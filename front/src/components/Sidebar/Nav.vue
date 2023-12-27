@@ -1,9 +1,9 @@
 <template>
   <nav
-    class="z-10 h-12 w-full sticky top-0 text-lg font-medium flex justify-between items-center text-gray-900 p-3 bg-slate-50 border-b border-slate-200"
+    class="z-10 text-center h-12 w-full sticky top-0 font-medium flex justify-between items-center text-gray-900 p-3 bg-slate-50 border-b border-slate-200"
   >
     <ArrowLeftIcon @click="goBack" class="w-6 text-gray-700 cursor-pointer" />
-    <span>
+    <span class="max-w-[18rem]">
       <slot></slot>
     </span>
     <XMarkIcon @click="goHome" class="w-6 text-gray-700 cursor-pointer" />

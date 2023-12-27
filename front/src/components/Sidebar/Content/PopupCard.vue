@@ -1,7 +1,7 @@
 <template>
   <fwb-card @click="handleClick" class="cursor-pointer p-3">
     <div class="flex justify-between gap-2 text-sm">
-      <div class="flex w-[16rem] min-h-[6rem] flex-col">
+      <div class="flex w-[16rem] h-[7rem] flex-col">
         <h2
           class="font-bold text-purple-600 text-lg flex justify-between gap-2 items-start"
         >
