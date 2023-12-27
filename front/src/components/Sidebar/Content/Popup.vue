@@ -12,6 +12,7 @@
           class="w-full h-[12rem] bg-gray-400 object-cover"
           :src="image?.link"
           @error="handleImgError"
+          loading="lazy"
         />
       </slide>
 

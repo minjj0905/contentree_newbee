@@ -27,6 +27,7 @@
         class="w-[6.5rem] min-h-[5.5rem] max-h-[6.5rem] object-cover rounded-md bg-gray-100"
         :src="imgData?.items[0]?.thumbnail"
         @error="handleImgError"
+        loading="lazy"
       />
     </div>
   </fwb-card>
